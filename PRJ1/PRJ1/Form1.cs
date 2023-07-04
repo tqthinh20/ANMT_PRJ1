@@ -38,16 +38,32 @@ namespace PRJ1
 
             textBox4.Text = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(kp.Item2));
 
-            //B2
-            string t = File.ReadAllText("C:\\Users\\tqthinh16\\Downloads\\kprivate.txt");
+            StreamWriter wr = new StreamWriter("C:\\Users\\tqthinh16\\Downloads\\KSSS.txt");
+            wr.WriteLine(textBox3.Text);
+            wr.Write(textBox4.Text);
+            wr.Close();
 
-            textBox5.Text = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(t));    
+
+            //B2
+            StreamReader rd = new StreamReader("C:\\Users\\tqthinh16\\Downloads\\kprivate.txt");
+            string t = rd.ReadToEnd();
+
+            StreamReader rd1 = new StreamReader("C:\\Users\\tqthinh16\\Downloads\\KSSS.txt");
+            string k1 = rd1.ReadLine();
+            string h = rd1.ReadLine();
+
+            textBox5.Text = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(t));
+            
+            if (textBox5.Text == h)
+            {
+                textBox6.Text = PRJ1_module.RSA.Decrypt(k1, t);
+
+
+                PRJ1_module.AES.FileDecrypt("C:\\Users\\tqthinh16\\Downloads\\Test.txt.metadata", "C:\\Users\\tqthinh16\\Downloads\\Test1.txt", textBox6.Text);
+            }
 
             
-            textBox6.Text = PRJ1_module.RSA.Decrypt(textBox3.Text, t);
-
-
-            PRJ1_module.AES.FileDecrypt("C:\\Users\\tqthinh16\\Downloads\\Test.txt.metadata", "C:\\Users\\tqthinh16\\Downloads\\Test1.txt", textBox6.Text);
+            
         }
     }
 }
