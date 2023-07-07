@@ -11,9 +11,9 @@ using System.Windows.Forms;
 
 namespace PRJ1
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
         }
@@ -60,10 +60,47 @@ namespace PRJ1
 
 
                 PRJ1_module.AES.FileDecrypt("C:\\Users\\tqthinh16\\Downloads\\Test.txt.metadata", "C:\\Users\\tqthinh16\\Downloads\\Test1.txt", textBox6.Text);
-            }
-
-            
-            
+            }            
         }
-    }
+
+		private void btn_encFile_Click(object sender, EventArgs e)
+		{
+            try
+            {                
+                OpenFileDialog ofd = new OpenFileDialog();  //Browse file from computer
+				ofd.ShowDialog();
+                textBox1.Text = ofd.FileName;   //Get file name
+                textBox2.Text = PRJ1_module.AES.GenerateKey();  //Generate AES key (Ks)
+				PRJ1_module.AES.FileEncrypt(textBox1.Text, textBox1.Text);  //Encrypt chosen file with Ks
+
+				Tuple<string, string> kp = PRJ1_module.RSA.GenerateKey();   //Generate a pair of private key (Kprivate) and public key (Kpublic) of RSA
+				textBox3.Text = kp.Item2;   //Get Kprivate
+                textBox4.Text = kp.Item1;   //Get Kpublic
+
+				textBox5.Text = PRJ1_module.RSA.Encrypt(textBox2.Text, kp.Item1);   //Encrypt Ks by RSA using Kpublic (output Kx)
+
+
+				PRJ1_module.RSA.exportKey(kp.Item2);    //Write Kprivate into file
+
+                //Hash Kprivate by SHA256
+				textBox6.Text = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(kp.Item2));
+
+                //Write Kx and Hashed string of Kprivate into file
+				StreamWriter wr = new StreamWriter("~/myKey/KSSS.txt");
+				wr.WriteLine(textBox5.Text);
+				wr.Write(textBox6.Text);
+				wr.Close();
+			}
+
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+		}
+
+		private void btn_decFile_Click(object sender, EventArgs e)
+		{
+
+		}
+	}
 }

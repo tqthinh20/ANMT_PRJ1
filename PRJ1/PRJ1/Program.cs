@@ -159,7 +159,7 @@ public class PRJ1_module
 
         public static void exportKey(string key)
         {
-            TextWriter writer = new StreamWriter("C:\\Users\\tqthinh16\\Downloads\\kprivate.txt");
+            TextWriter writer = new StreamWriter("~/myKey/kprivate.txt");
 
             writer.Write(key);
             writer.Close();
