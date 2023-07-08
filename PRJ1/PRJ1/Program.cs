@@ -159,7 +159,8 @@ public class PRJ1_module
 
         public static void exportKey(string key)
         {
-            TextWriter writer = new StreamWriter("~/myKey/kprivate.txt");
+            string path = "C:\\Users\\tqthinh16\\Downloads\\kprivate.txt";
+            TextWriter writer = new StreamWriter(path);
 
             writer.Write(key);
             writer.Close();
@@ -219,7 +220,7 @@ namespace PRJ1
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Form1());
+            Application.Run(new FormMenu());
         }
     }
 }
