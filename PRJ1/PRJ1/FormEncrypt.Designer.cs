@@ -34,11 +34,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btn_BrowseFile = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_Select = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.textBox2 = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // btn_Enc
             // 
-            this.btn_Enc.Location = new System.Drawing.Point(195, 186);
+            this.btn_Enc.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
+            this.btn_Enc.Location = new System.Drawing.Point(195, 276);
             this.btn_Enc.Name = "btn_Enc";
             this.btn_Enc.Size = new System.Drawing.Size(163, 59);
             this.btn_Enc.TabIndex = 0;
@@ -48,7 +52,7 @@
             // 
             // btn_Back
             // 
-            this.btn_Back.Location = new System.Drawing.Point(518, 237);
+            this.btn_Back.Location = new System.Drawing.Point(518, 327);
             this.btn_Back.Name = "btn_Back";
             this.btn_Back.Size = new System.Drawing.Size(107, 35);
             this.btn_Back.TabIndex = 1;
@@ -94,20 +98,50 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "ENCRYPTION";
             // 
+            // btn_Select
+            // 
+            this.btn_Select.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
+            this.btn_Select.Location = new System.Drawing.Point(528, 201);
+            this.btn_Select.Name = "btn_Select";
+            this.btn_Select.Size = new System.Drawing.Size(83, 26);
+            this.btn_Select.TabIndex = 8;
+            this.btn_Select.Text = "Select";
+            this.btn_Select.UseVisualStyleBackColor = true;
+            this.btn_Select.Click += new System.EventHandler(this.btn_Select_Click);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.label3.Location = new System.Drawing.Point(34, 201);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(96, 20);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Export Path";
+            // 
+            // textBox2
+            // 
+            this.textBox2.Location = new System.Drawing.Point(155, 201);
+            this.textBox2.Name = "textBox2";
+            this.textBox2.Size = new System.Drawing.Size(318, 22);
+            this.textBox2.TabIndex = 6;
+            // 
             // FormEncrypt
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(637, 283);
+            this.ClientSize = new System.Drawing.Size(637, 374);
+            this.Controls.Add(this.btn_Select);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.textBox2);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_BrowseFile);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.btn_Back);
             this.Controls.Add(this.btn_Enc);
-            this.MaximumSize = new System.Drawing.Size(655, 330);
-            this.MinimumSize = new System.Drawing.Size(655, 330);
             this.Name = "FormEncrypt";
+            this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "FormEncrypt";
             this.ResumeLayout(false);
@@ -123,5 +157,8 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btn_BrowseFile;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Button btn_Select;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox textBox2;
     }
 }

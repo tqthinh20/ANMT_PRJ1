@@ -157,10 +157,9 @@ public class PRJ1_module
             return Tuple.Create(Kpublic, Kprivate);
         }
 
-        public static void exportKey(string key)
+        public static void exportKey(string path, string key)
         {
-            string path = "C:\\Users\\tqthinh16\\Downloads\\kprivate.txt";
-            TextWriter writer = new StreamWriter(path);
+            TextWriter writer = new StreamWriter(path + "\\kprivate.txt");
 
             writer.Write(key);
             writer.Close();

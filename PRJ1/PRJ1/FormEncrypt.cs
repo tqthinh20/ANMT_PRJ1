@@ -26,33 +26,47 @@ namespace PRJ1
             textBox1.Text = ofd.FileName;   //Get file name
         }
 
+        private void btn_Select_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.ShowDialog();
+            textBox2.Text = fbd.SelectedPath;
+        }
+
         private void btn_Enc_Click(object sender, EventArgs e)
         {
             try
             {
-                string Ks = PRJ1_module.AES.GenerateKey();  //Generate AES key (Ks)
-                PRJ1_module.AES.FileEncrypt(textBox1.Text, Ks);  //Encrypt chosen file with Ks
+                if (File.Exists(textBox1.Text) && Directory.Exists(textBox2.Text)) 
+                {
+                    string Ks = PRJ1_module.AES.GenerateKey();  //Generate AES key (Ks)
+                    PRJ1_module.AES.FileEncrypt(textBox1.Text, Ks);  //Encrypt chosen file with Ks
 
-                Tuple<string, string> kp = PRJ1_module.RSA.GenerateKey();   //Generate a pair of private key (Kprivate) and public key (Kpublic) of RSA
-                string Kpublic = kp.Item1;   //Get Kpublic
-                string Kprivate = kp.Item2;   //Get Kprivate
+                    Tuple<string, string> kp = PRJ1_module.RSA.GenerateKey();   //Generate a pair of private key (Kprivate) and public key (Kpublic) of RSA
+                    string Kpublic = kp.Item1;   //Get Kpublic
+                    string Kprivate = kp.Item2;   //Get Kprivate
 
 
-                string Kx = PRJ1_module.RSA.Encrypt(Ks, Kpublic);   //Encrypt Ks by RSA using Kpublic (output Kx)
+                    string Kx = PRJ1_module.RSA.Encrypt(Ks, Kpublic);   //Encrypt Ks by RSA using Kpublic (output Kx)
 
 
-                PRJ1_module.RSA.exportKey(Kprivate);    //Write Kprivate into file
+                    PRJ1_module.RSA.exportKey(textBox2.Text, Kprivate);    //Write Kprivate into file
 
-                //Hash Kprivate by SHA256
-                string HKprivate = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(Kprivate));
+                    //Hash Kprivate by SHA256
+                    string HKprivate = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(Kprivate));
 
-                //Write Kx and HKprivate into file
-                StreamWriter wr = new StreamWriter("C:\\Users\\tqthinh16\\Downloads\\KSSS.txt");
-                wr.WriteLine(Kx);
-                wr.Write(HKprivate);
-                wr.Close();
+                    //Write Kx and HKprivate into file
+                    StreamWriter wr = new StreamWriter(textBox2.Text + "\\KSSS.txt");
+                    wr.WriteLine(Kx);
+                    wr.Write(HKprivate);
+                    wr.Close();
 
-                MessageBox.Show("Encrypt successfully!");
+                    MessageBox.Show("Encrypt successfully!");
+                }
+                
+                else {
+                    MessageBox.Show("Invalid file input!");
+                }
             }
 
             catch (Exception ex)

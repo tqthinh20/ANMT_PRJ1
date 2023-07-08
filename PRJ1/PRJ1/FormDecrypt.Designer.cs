@@ -150,7 +150,7 @@
             // btn_Dec
             // 
             this.btn_Dec.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btn_Dec.Location = new System.Drawing.Point(190, 323);
+            this.btn_Dec.Location = new System.Drawing.Point(217, 323);
             this.btn_Dec.Name = "btn_Dec";
             this.btn_Dec.Size = new System.Drawing.Size(163, 59);
             this.btn_Dec.TabIndex = 9;
