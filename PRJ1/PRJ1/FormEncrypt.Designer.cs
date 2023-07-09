@@ -42,7 +42,7 @@
             // btn_Enc
             // 
             this.btn_Enc.Font = new System.Drawing.Font("Microsoft Sans Serif", 13F);
-            this.btn_Enc.Location = new System.Drawing.Point(195, 276);
+            this.btn_Enc.Location = new System.Drawing.Point(240, 274);
             this.btn_Enc.Name = "btn_Enc";
             this.btn_Enc.Size = new System.Drawing.Size(163, 59);
             this.btn_Enc.TabIndex = 0;
@@ -62,27 +62,28 @@
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(155, 117);
+            this.textBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox1.Location = new System.Drawing.Point(155, 140);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(318, 22);
+            this.textBox1.Size = new System.Drawing.Size(343, 26);
             this.textBox1.TabIndex = 2;
             // 
             // label1
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label1.Location = new System.Drawing.Point(34, 117);
+            this.label1.Location = new System.Drawing.Point(34, 143);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(85, 20);
+            this.label1.Size = new System.Drawing.Size(117, 20);
             this.label1.TabIndex = 3;
-            this.label1.Text = "File Name";
+            this.label1.Text = "File to Encrypt";
             // 
             // btn_BrowseFile
             // 
-            this.btn_BrowseFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btn_BrowseFile.Location = new System.Drawing.Point(528, 117);
+            this.btn_BrowseFile.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btn_BrowseFile.Location = new System.Drawing.Point(518, 138);
             this.btn_BrowseFile.Name = "btn_BrowseFile";
-            this.btn_BrowseFile.Size = new System.Drawing.Size(83, 26);
+            this.btn_BrowseFile.Size = new System.Drawing.Size(83, 30);
             this.btn_BrowseFile.TabIndex = 4;
             this.btn_BrowseFile.Text = "Browse";
             this.btn_BrowseFile.UseVisualStyleBackColor = true;
@@ -92,7 +93,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F);
-            this.label2.Location = new System.Drawing.Point(179, 20);
+            this.label2.Location = new System.Drawing.Point(204, 50);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(242, 39);
             this.label2.TabIndex = 5;
@@ -100,10 +101,10 @@
             // 
             // btn_Select
             // 
-            this.btn_Select.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F);
-            this.btn_Select.Location = new System.Drawing.Point(528, 201);
+            this.btn_Select.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.btn_Select.Location = new System.Drawing.Point(518, 198);
             this.btn_Select.Name = "btn_Select";
-            this.btn_Select.Size = new System.Drawing.Size(83, 26);
+            this.btn_Select.Size = new System.Drawing.Size(83, 30);
             this.btn_Select.TabIndex = 8;
             this.btn_Select.Text = "Select";
             this.btn_Select.UseVisualStyleBackColor = true;
@@ -113,7 +114,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.label3.Location = new System.Drawing.Point(34, 201);
+            this.label3.Location = new System.Drawing.Point(34, 203);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(96, 20);
             this.label3.TabIndex = 7;
@@ -121,9 +122,10 @@
             // 
             // textBox2
             // 
-            this.textBox2.Location = new System.Drawing.Point(155, 201);
+            this.textBox2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.textBox2.Location = new System.Drawing.Point(155, 200);
             this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(318, 22);
+            this.textBox2.Size = new System.Drawing.Size(343, 26);
             this.textBox2.TabIndex = 6;
             // 
             // FormEncrypt
@@ -143,7 +145,8 @@
             this.Name = "FormEncrypt";
             this.RightToLeft = System.Windows.Forms.RightToLeft.No;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "FormEncrypt";
+            this.Text = "Encryption";
+            this.Load += new System.EventHandler(this.FormEncrypt_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

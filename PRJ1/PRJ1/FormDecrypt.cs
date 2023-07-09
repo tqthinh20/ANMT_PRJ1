@@ -18,6 +18,11 @@ namespace PRJ1
             InitializeComponent();
         }
 
+        private void FormDecrypt_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btn_Browse1_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();  //Browse file from computer
@@ -46,24 +51,22 @@ namespace PRJ1
                 if (File.Exists(textBox1.Text) && File.Exists(textBox2.Text) && File.Exists(textBox3.Text))
                 {
                     StreamReader rd = new StreamReader(textBox2.Text);
-                    string Kprivate = rd.ReadToEnd();
+                    string Kprivate = rd.ReadToEnd(); //Read kprivate from file
                     rd.Close();
 
                     StreamReader rd1 = new StreamReader(textBox3.Text);
-                    string Kx = rd1.ReadLine();
-                    string HKprivate = rd1.ReadLine();
+                    string Kx = rd1.ReadLine(); //Read Kx from file
+                    string HKprivate = rd1.ReadLine(); //Read HKprivate from file
+                    string extension = rd1.ReadLine(); //Read extension from file
                     rd1.Close();
 
-                    if (PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(Kprivate)) == HKprivate)
+                    if (PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA1(Kprivate)) == HKprivate)
                     {
                         string Ks = PRJ1_module.RSA.Decrypt(Kx, Kprivate);
 
-                        FolderBrowserDialog fbd = new FolderBrowserDialog();
-                        fbd.ShowDialog();
-                        string path = fbd.SelectedPath;
-                        path = path + "\\Test1.txt";
+                        string outputFile = Path.ChangeExtension(textBox1.Text, extension);
 
-                        PRJ1_module.AES.FileDecrypt(textBox1.Text, path, Ks);
+                        PRJ1_module.AES.FileDecrypt(textBox1.Text, outputFile, Ks);
 
                         MessageBox.Show("Decrypt successfully!");
                     }

@@ -36,7 +36,7 @@
             // btn_encForm
             // 
             this.btn_encForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btn_encForm.Location = new System.Drawing.Point(118, 128);
+            this.btn_encForm.Location = new System.Drawing.Point(118, 141);
             this.btn_encForm.Margin = new System.Windows.Forms.Padding(4);
             this.btn_encForm.Name = "btn_encForm";
             this.btn_encForm.Size = new System.Drawing.Size(171, 54);
@@ -48,7 +48,7 @@
             // btn_decForm
             // 
             this.btn_decForm.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.btn_decForm.Location = new System.Drawing.Point(118, 261);
+            this.btn_decForm.Location = new System.Drawing.Point(118, 224);
             this.btn_decForm.Margin = new System.Windows.Forms.Padding(4);
             this.btn_decForm.Name = "btn_decForm";
             this.btn_decForm.Size = new System.Drawing.Size(171, 54);
@@ -61,7 +61,7 @@
             // 
             this.label7.AutoSize = true;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15F);
-            this.label7.Location = new System.Drawing.Point(45, 34);
+            this.label7.Location = new System.Drawing.Point(56, 47);
             this.label7.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(309, 29);
@@ -73,15 +73,17 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(414, 401);
+            this.ClientSize = new System.Drawing.Size(414, 353);
             this.Controls.Add(this.label7);
             this.Controls.Add(this.btn_decForm);
             this.Controls.Add(this.btn_encForm);
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximumSize = new System.Drawing.Size(432, 448);
-            this.MinimumSize = new System.Drawing.Size(432, 448);
+            this.MinimumSize = new System.Drawing.Size(432, 400);
             this.Name = "FormMenu";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
+            this.Text = "Menu";
+            this.Load += new System.EventHandler(this.FormMenu_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 

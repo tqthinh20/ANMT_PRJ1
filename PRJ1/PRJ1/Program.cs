@@ -8,15 +8,12 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Xml;
 using System.Xml.Serialization;
+using static System.Net.WebRequestMethods;
 
 public class PRJ1_module
 {
     public class AES
     {
-        private static byte[] Ks;
-        private static byte[] iv = new byte[16];
-        private static int blocksize = 128;
-        private static int keysize = 256;
 
         public static byte[] GenerateRandomSalt()
         {
@@ -39,7 +36,7 @@ public class PRJ1_module
             byte[] salt = GenerateRandomSalt();
             byte[] passwordBytes = System.Text.Encoding.UTF8.GetBytes("ThisisapasswordforAES");
 
-            var key = new Rfc2898DeriveBytes(passwordBytes, salt, 50000);
+            var key = new Rfc2898DeriveBytes(passwordBytes, salt, 1000);
 
             byte[] Ks = key.GetBytes(32);
 
@@ -47,10 +44,7 @@ public class PRJ1_module
         }
 
         public static void FileEncrypt(string inputFile, string ks)
-        {   
-            //create output file name
-            FileStream fsCrypt = new FileStream(inputFile + ".metadata", FileMode.Create);            
-
+        {
             //Set Rijndael symmetric encryption algorithm
             RijndaelManaged AES = new RijndaelManaged();
             
@@ -62,11 +56,15 @@ public class PRJ1_module
             AES.Key = Convert.FromBase64String(ks);
             AES.IV = new byte[16];
 
+            //create output file name
+            string outputFile = Path.ChangeExtension(inputFile, ".metadata");
+
+            FileStream fsCrypt = new FileStream(outputFile, FileMode.Create);
+
             CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateEncryptor(), CryptoStreamMode.Write);
 
             FileStream fsIn = new FileStream(inputFile, FileMode.Open);
 
-            //create a buffer (1mb) so only this amount will allocate in the memory and not the whole file
             byte[] buffer = new byte[1048576];
             int read;
 
@@ -74,16 +72,15 @@ public class PRJ1_module
             {
                 while ((read = fsIn.Read(buffer, 0, buffer.Length)) > 0)
                 {
-                    Application.DoEvents(); // -> for responsive GUI, using Task will be better!
+                    Application.DoEvents();
                     cs.Write(buffer, 0, read);
                 }
 
-                // Close up
                 fsIn.Close();
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
             finally
             {
@@ -93,9 +90,7 @@ public class PRJ1_module
         }
 
         public static void FileDecrypt(string inputFile, string outputFile, string ks)
-        {            
-            FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
-
+        {
             RijndaelManaged AES = new RijndaelManaged();
 
             AES.KeySize = 256;
@@ -105,6 +100,8 @@ public class PRJ1_module
 
             AES.Key = Convert.FromBase64String(ks);
             AES.IV = new byte[16];
+
+            FileStream fsCrypt = new FileStream(inputFile, FileMode.Open);
 
             CryptoStream cs = new CryptoStream(fsCrypt, AES.CreateDecryptor(), CryptoStreamMode.Read);
 
@@ -123,11 +120,11 @@ public class PRJ1_module
             }
             catch (CryptographicException ex_CryptographicException)
             {
-                Console.WriteLine("CryptographicException error: " + ex_CryptographicException.Message);
+                MessageBox.Show("CryptographicException error: " + ex_CryptographicException.Message);
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error: " + ex.Message);
+                MessageBox.Show("Error: " + ex.Message);
             }
 
             try
@@ -136,7 +133,7 @@ public class PRJ1_module
             }
             catch (Exception ex)
             {
-                Console.WriteLine("Error by closing CryptoStream: " + ex.Message);
+                MessageBox.Show("Error by closing CryptoStream: " + ex.Message);
             }
             finally
             {

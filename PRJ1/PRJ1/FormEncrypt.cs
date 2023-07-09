@@ -19,6 +19,11 @@ namespace PRJ1
             InitializeComponent();
         }
 
+        private void FormEncrypt_Load(object sender, EventArgs e)
+        {
+
+        }
+
         private void btn_BrowseFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog ofd = new OpenFileDialog();  //Browse file from computer
@@ -53,12 +58,13 @@ namespace PRJ1
                     PRJ1_module.RSA.exportKey(textBox2.Text, Kprivate);    //Write Kprivate into file
 
                     //Hash Kprivate by SHA256
-                    string HKprivate = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA256(Kprivate));
+                    string HKprivate = PRJ1_module.HASH.hashString(PRJ1_module.HASH.HashSHA1(Kprivate));
 
                     //Write Kx and HKprivate into file
-                    StreamWriter wr = new StreamWriter(textBox2.Text + "\\KSSS.txt");
+                    StreamWriter wr = new StreamWriter(textBox2.Text + "\\Kx_HKpr.metadata");
                     wr.WriteLine(Kx);
-                    wr.Write(HKprivate);
+                    wr.WriteLine(HKprivate);
+                    wr.Write(Path.GetExtension(textBox1.Text));
                     wr.Close();
 
                     MessageBox.Show("Encrypt successfully!");
